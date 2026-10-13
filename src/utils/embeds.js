@@ -2,10 +2,9 @@
 
 import { EmbedBuilder } from 'discord.js';
 import { getColor, botConfig } from '../config/bot.js';
-
-const EMOJI_REGEX = /[\p{Extended_Pictographic}\uFE0F]/gu;
 const EMBED_FOOTER_SYMBOL = Symbol('titanbotFooterText');
 const EMBED_BASE_DESCRIPTION_SYMBOL = Symbol('titanbotBaseDescription');
+
 
 function sanitizeEmbedText(text = '') {
   if (typeof text !== 'string') {
@@ -13,13 +12,13 @@ function sanitizeEmbedText(text = '') {
   }
 
   return text
-    .replace(EMOJI_REGEX, '')
-    .replace(/[ \t]+/g, ' ')  // Replace consecutive spaces/tabs with single space
-    .replace(/[ \t]\n/g, '\n')  // Remove spaces before newlines
-    .replace(/\n[ \t]/g, '\n')  // Remove spaces after newlines
-    .replace(/\n{3,}/g, '\n\n')  // Limit consecutive newlines to 2
+    .replace(/[ \t]+/g, ' ')
+    .replace(/[ \t]\n/g, '\n')
+    .replace(/\n[ \t]/g, '\n')
+    .replace(/\n{3,}/g, '\n\n')
     .trim();
 }
+
 
 function sanitizeEmbedField(field) {
   if (!field || typeof field !== 'object') {
